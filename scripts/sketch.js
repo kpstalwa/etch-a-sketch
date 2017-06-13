@@ -1,12 +1,13 @@
 var numRow=16;
 var numCol=16;
 var grdiv=$('div#grid');
+var curColor="#800080";
 $(document).ready(function(){
 	makeTable();
-	console.log(grdiv);
+	applyHover();
 });
 function makeTable(){ //will make default 16x16 table
-	if (numRow === 0 || numCol===0){
+	if (numRow === 0 && numCol===0){
 		alert("Please enter values greater than 0");
 	}
 	else {
@@ -19,15 +20,65 @@ function makeTable(){ //will make default 16x16 table
 			}
 			ntable.appendChild(nrow);
 		}
-		 grdiv.html(ntable);
-		}
+		grdiv.html(ntable);
+	}
+	applyHover();
 }
 function getDimension(){
-var dims=prompt("Please enter square sidelength","16");
-numRow=dims;
-numCol=dims;
-makeTable();
+	var dims=prompt("Enter desired sidelength","16");
+	numRow=dims;
+	numCol=dims;
+	makeTable();
+}
+function getRandomColor(){
+	var color = Math.floor(Math.random() * 16777216).toString(16);
+	return '#000000'.slice(0, -color.length) + color;
 }
 function changeColor(){
-
+	applyHover();
+	curColor=getRandomColor();
+	applyHover();
 }
+var cnt=0;
+function applyHover(){
+	var element = document.createElement('style'),
+	sheet;
+// Append style element to head
+document.head.appendChild(element);
+// Reference to the stylesheet
+sheet = element.sheet;
+$("head").append('<style id="new-animations" type="text/css"></style>');
+var sheet = $("#new-animations").get(0).sheet;
+var styles = '.hover' + cnt + '{';
+console.log(curColor);
+styles += 'background-color:' + curColor + ';';
+styles += '}';
+// Add the first CSS rule to the stylesheet
+sheet.insertRule(styles, 0);
+//cnt+=1;
+$("div#grid td").on('mouseover', function () {
+	$(this).addClass("hover" + cnt);
+});
+cnt+=1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
