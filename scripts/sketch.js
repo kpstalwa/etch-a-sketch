@@ -27,7 +27,7 @@ function makeTable(){ //will make default 16x16 table on first run
 	applyHover(); 
 }
 function getDimension(){ //gets the square dimension
-	var dims=prompt("Enter desired sidelength","16");
+	var dims=prompt("Enter desired sidelength:","16");
 	numRow=dims;
 	numCol=dims;
 	makeTable();
@@ -42,10 +42,12 @@ function changeColor(){
 			applyHover();
 		}
 	} //check against valid color
-	if(!check && selectc!=red){
-		alert("Please enter a valid rainbow color");
+	if(!check && selectc!="red"){
+		alert("Please enter a valid rainbow color. Reverting to last used color");
 	}
 }
+//applyHover() applies a class to the element
+//that has a mouse pointer on it.
 function applyHover(){
 	var element = document.createElement('style'),
 	sheet;
