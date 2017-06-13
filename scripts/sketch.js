@@ -3,7 +3,7 @@ var numCol=16;
 var grdiv=$('div#grid');
 var curColor="red";
 //can add as many colours as desired
-var rainbow=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+var rainbow=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'white'];
 $(document).ready(function(){
 	makeTable();
 });
@@ -34,7 +34,7 @@ function getDimension(){ //gets the square dimension
 }
 function changeColor(){
 	var check=false;
-	var selectc=prompt("Colors: " + rainbow, "red");
+	var selectc=prompt("Colors (type white to erase): " + rainbow, "red");
 	for (var i=0; i<rainbow.length; i++){
 		if (rainbow[i] === selectc){
 			curColor=selectc;
@@ -46,7 +46,6 @@ function changeColor(){
 		alert("Please enter a valid rainbow color");
 	}
 }
-//var cnt=0;
 function applyHover(){
 	var element = document.createElement('style'),
 	sheet;
@@ -72,24 +71,3 @@ $("div#grid td").on('mouseover', function () {
 
 });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
