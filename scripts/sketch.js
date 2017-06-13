@@ -32,6 +32,7 @@ function getDimension(){ //gets the square dimension
 	numCol=dims;
 	makeTable();
 }
+//selects and makes sure a valid colour is entered
 function changeColor(){
 	var check=false;
 	var selectc=prompt("Colors (type white to erase): " + rainbow, "red");
