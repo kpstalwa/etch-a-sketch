@@ -2,12 +2,12 @@ var numRow=16;
 var numCol=16;
 var grdiv=$('div#grid');
 var curColor="red";
+//can add as many colours as desired
 var rainbow=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 $(document).ready(function(){
 	makeTable();
-	//applyHover();
 });
-function makeTable(){ //will make default 16x16 table
+function makeTable(){ //will make default 16x16 table on first run
 	if (numRow === 0 && numCol===0){
 		alert("Please enter values greater than 0");
 	}
@@ -24,9 +24,9 @@ function makeTable(){ //will make default 16x16 table
 		}
 		grdiv.html(ntable);
 	}
-	applyHover();
+	applyHover(); 
 }
-function getDimension(){
+function getDimension(){ //gets the square dimension
 	var dims=prompt("Enter desired sidelength","16");
 	numRow=dims;
 	numCol=dims;
@@ -41,7 +41,7 @@ function changeColor(){
 			check=true;
 			applyHover();
 		}
-	}
+	} //check against valid color
 	if(!check && selectc!=red){
 		alert("Please enter a valid rainbow color");
 	}
@@ -61,10 +61,15 @@ styles += 'background-color:' + curColor + ';';
 styles += '}';
 // Add the first CSS rule to the stylesheet
 sheet.insertRule(styles, 0);
-//cnt+=1;
+//add a dynamic class with a .hoverred etc, for rule
 $("div#grid td").on('mouseover', function () {
+	if (!(this.classList.contains('hover' + curColor))){
+		//remove all classes associated with this if it already has a class
+		$(this).removeClass();
+	}
+	//emsures this has no class, so allows overlapping of colours
 	$(this).addClass("hover" + curColor);
-//cnt+=1;
+
 });
 }
 
